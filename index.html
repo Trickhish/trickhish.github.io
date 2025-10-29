@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS1 Prompt Theme Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4ec9b0;
+            font-size: 2em;
+        }
+
+        .controls {
+            background: #252526;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            color: #cccccc;
+        }
+
+        select, input {
+            background: #3c3c3c;
+            color: #ffffff;
+            border: 1px solid #555555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            min-width: 200px;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #4ec9b0;
+        }
+
+        .preview-section {
+            background: #0c0c0c;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .terminal {
+            background: #000000;
+            padding: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            overflow-x: auto;
+            min-height: 100px;
+        }
+
+        .prompt-line {
+            margin-bottom: 10px;
+            white-space: pre;
+        }
+
+        .code-section {
+            margin-top: 20px;
+            background: #252526;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .code-section h3 {
+            color: #4ec9b0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #555555;
+        }
+
+        .copy-btn {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #1177bb;
+        }
+
+        .copy-btn:active {
+            background: #0d5a8f;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .theme-card {
+            background: #252526;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(78, 201, 176, 0.3);
+        }
+
+        .theme-card h4 {
+            color: #4ec9b0;
+            margin-bottom: 10px;
+        }
+
+        .theme-preview {
+            background: #000000;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 PS1 Prompt Theme Preview</h1>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="format">Prompt Format:</label>
+                <select id="format">
+                    <option value="boxed">Boxed (┌──)</option>
+                    <option value="arrow">Arrow (➜)</option>
+                    <option value="simple">Simple</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="powerline">Powerline Style</option>
+                    <option value="doubleline">Double Line</option>
+                    <option value="clean">Clean Modern</option>
+                    <option value="git">Git Branch</option>
+                    <option value="time">With Time</option>
+                    <option value="emoji">With Emoji</option>
+                    <option value="blocks">Block Style</option>
+                    <option value="lambda">Lambda (λ)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="theme">Color Theme:</label>
+                <select id="theme">
+                    <option value="green">Original Green/Blue</option>
+                    <option value="purple">Cyberpunk Purple</option>
+                    <option value="cyan">Ocean Cyan</option>
+                    <option value="orange">Warm Orange</option>
+                    <option value="red">Red Alert</option>
+                    <option value="mixed1">Blue/Green Mix</option>
+                    <option value="mixed2">Purple/Cyan Mix</option>
+                    <option value="gray">Monochrome Gray</option>
+                    <option value="solarized">Solarized Dark</option>
+                    <option value="dracula">Dracula</option>
+                    <option value="nord">Nord</option>
+                    <option value="gruvbox">Gruvbox</option>
+                    <option value="monokai">Monokai</option>
+                    <option value="material">Material</option>
+                    <option value="onedark">One Dark</option>
+                    <option value="gradient1">Gradient (Teal→Blue)</option>
+                    <option value="gradient2">Gradient (Pink→Purple)</option>
+                    <option value="neon">Neon</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="user" placeholder="username">
+            </div>
+
+            <div class="control-group">
+                <label for="hostname">Hostname:</label>
+                <input type="text" id="hostname" value="localhost" placeholder="hostname">
+            </div>
+
+            <div class="control-group">
+                <label for="path">Path:</label>
+                <input type="text" id="path" value="/home/user/projects" placeholder="path">
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2 style="color: #4ec9b0; margin-bottom: 15px;">Preview</h2>
+            <div class="terminal" id="preview"></div>
+
+            <div class="code-section">
+                <h3>Bash PS1 Code</h3>
+                <div class="code-block" id="ps1-code"></div>
+                <button class="copy-btn" onclick="copyPS1()">Copy PS1 Code</button>
+            </div>
+        </div>
+
+        <h2 style="color: #4ec9b0; margin: 30px 0 20px 0;">Quick Theme Selection</h2>
+        <div class="theme-grid" id="theme-grid"></div>
+    </div>
+
+    <script>
+        const themes = {
+            green: { frame: '#00ff00', user: '#5f87ff', path: '#00ff00', exit: '#00ff00' },
+            purple: { frame: '#af00ff', user: '#ff00ff', path: '#ff87ff', exit: '#af00ff' },
+            cyan: { frame: '#00ffff', user: '#87ffff', path: '#00ffff', exit: '#00ffff' },
+            orange: { frame: '#ffaf00', user: '#ffff00', path: '#ffff00', exit: '#ffaf00' },
+            red: { frame: '#ff0000', user: '#ff5f5f', path: '#ff0000', exit: '#ff0000' },
+            mixed1: { frame: '#5f87ff', user: '#87ffff', path: '#00ff00', exit: '#5f87ff' },
+            mixed2: { frame: '#af00ff', user: '#ffff00', path: '#00ffff', exit: '#af00ff' },
+            gray: { frame: '#bcbcbc', user: '#ffffff', path: '#ffffff', exit: '#bcbcbc' },
+            solarized: { frame: '#93a1a1', user: '#268bd2', path: '#859900', exit: '#b58900' },
+            dracula: { frame: '#bd93f9', user: '#ff79c6', path: '#50fa7b', exit: '#ffb86c' },
+            nord: { frame: '#88c0d0', user: '#81a1c1', path: '#a3be8c', exit: '#ebcb8b' },
+            gruvbox: { frame: '#fe8019', user: '#fabd2f', path: '#b8bb26', exit: '#fb4934' },
+            monokai: { frame: '#f92672', user: '#a6e22e', path: '#66d9ef', exit: '#fd971f' },
+            material: { frame: '#89ddff', user: '#82aaff', path: '#c3e88d', exit: '#ffcb6b' },
+            onedark: { frame: '#61afef', user: '#c678dd', path: '#98c379', exit: '#e5c07b' },
+            gradient1: { frame: '#1bcfc6', user: '#008cff', path: '#00d7af', exit: '#0bb092' },
+            gradient2: { frame: '#ff006e', user: '#c44dff', path: '#ff87ff', exit: '#ff006e' },
+            neon: { frame: '#00ff41', user: '#ff10f0', path: '#00ffff', exit: '#ffff00' }
+        };
+
+        const formats = {
+            boxed: (user, host, path, theme) => {
+                return `<span style="color: ${theme.frame}">┌──(</span><span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.user}">@</span><span style="color: ${theme.user}">${host}</span><span style="color: ${theme.frame}">)-[</span><span style="color: ${theme.path}; font-weight: bold">${path}</span><span style="color: ${theme.frame}">] [</span><span style="color: ${theme.exit}">0</span><span style="color: ${theme.frame}">]</span>\n<span style="color: ${theme.frame}">╰─</span><span style="color: ${theme.user}; font-weight: bold">$</span> `;
+            },
+            arrow: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}; font-weight: bold">${path}</span>\n<span style="color: ${theme.frame}">➜</span> `;
+            },
+            simple: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span><span style="color: ${theme.frame}">:</span><span style="color: ${theme.path}">${path}</span><span style="color: ${theme.frame}">$</span> `;
+            },
+            minimal: (user, host, path, theme) => {
+                const shortPath = path.split('/').pop() || '/';
+                return `<span style="color: ${theme.path}; font-weight: bold">${shortPath}</span> <span style="color: ${theme.frame}">›</span> `;
+            },
+            powerline: (user, host, path, theme) => {
+                return `<span style="background: ${theme.user}; color: #000000; padding: 2px 8px; font-weight: bold">${user}@${host}</span><span style="color: ${theme.user}"></span> <span style="background: ${theme.path}; color: #000000; padding: 2px 8px">${path}</span><span style="color: ${theme.path}"></span> `;
+            },
+            doubleline: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.frame}">in</span> <span style="color: ${theme.path}; font-weight: bold">${path}</span>\n<span style="color: ${theme.exit}">❯</span> `;
+            },
+            clean: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}">${user}</span> <span style="color: ${theme.frame}">at</span> <span style="color: ${theme.path}">${path}</span>\n<span style="color: ${theme.frame}">→</span> `;
+            },
+            git: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}">${path}</span> <span style="color: ${theme.exit}"> main</span>\n<span style="color: ${theme.frame}">$</span> `;
+            },
+            time: (user, host, path, theme) => {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                return `<span style="color: ${theme.frame}">[${timeStr}]</span> <span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}">${path}</span>\n<span style="color: ${theme.frame}">$</span> `;
+            },
+            emoji: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}">🚀 ${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}">📁 ${path}</span>\n<span style="color: ${theme.exit}">✨</span> `;
+            },
+            blocks: (user, host, path, theme) => {
+                return `<span style="color: ${theme.user}">█</span> <span style="color: ${theme.user}; font-weight: bold">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}">█</span> <span style="color: ${theme.path}">${path}</span>\n<span style="color: ${theme.frame}">▓▒░</span> `;
+            },
+            lambda: (user, host, path, theme) => {
+                const shortPath = path.split('/').slice(-2).join('/') || path;
+                return `<span style="color: ${theme.frame}">╭─</span><span style="color: ${theme.user}">${user}</span><span style="color: ${theme.frame}">@</span><span style="color: ${theme.user}">${host}</span> <span style="color: ${theme.path}">${shortPath}</span>\n<span style="color: ${theme.frame}">╰─</span><span style="color: ${theme.exit}; font-weight: bold">λ</span> `;
+            }
+        };
+
+        const ps1Templates = {
+            boxed: (theme) => `PS1='\\[\\e[${theme.frameCode}m\\]┌──(\\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.userCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h\\[\\e[0;${theme.frameCode}m\\])-[\\[\\e[${theme.pathCode};1m\\]\\w\\[\\e[0;${theme.frameCode}m\\]] [\\[\\e[${theme.exitCode}m\\]$?\\[\\e[${theme.frameCode}m\\]]\\n\\[\\e[${theme.frameCode}m\\]╰─\\[\\e[${theme.userCode};1m\\]\\$\\[\\e[0m\\] '`,
+            arrow: (theme) => `PS1='\\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode};1m\\]\\w\\n\\[\\e[${theme.frameCode}m\\]➜\\[\\e[0m\\]  '`,
+            simple: (theme) => `PS1='\\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h\\[\\e[${theme.frameCode}m\\]:\\[\\e[${theme.pathCode}m\\]\\w\\[\\e[${theme.frameCode}m\\]\\$\\[\\e[0m\\] '`,
+            minimal: (theme) => `PS1='\\[\\e[${theme.pathCode};1m\\]\\W\\[\\e[0m\\] \\[\\e[${theme.frameCode}m\\]›\\[\\e[0m\\] '`,
+            powerline: (theme) => `PS1='\\[\\e[48;5;${theme.userColor};38;5;0;1m\\] \\u@\\h \\[\\e[38;5;${theme.userColor};48;5;${theme.pathColor}m\\]\\[\\e[38;5;0m\\] \\w \\[\\e[0;38;5;${theme.pathColor}m\\]\\[\\e[0m\\] '`,
+            doubleline: (theme) => `PS1='\\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.frameCode}m\\]in \\[\\e[${theme.pathCode};1m\\]\\w\\n\\[\\e[${theme.exitCode}m\\]❯\\[\\e[0m\\] '`,
+            clean: (theme) => `PS1='\\[\\e[${theme.userCode}m\\]\\u \\[\\e[${theme.frameCode}m\\]at \\[\\e[${theme.pathCode}m\\]\\w\\n\\[\\e[${theme.frameCode}m\\]→\\[\\e[0m\\] '`,
+            git: (theme) => `PS1='\\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode}m\\]\\w \\[\\e[${theme.exitCode}m\\]$(git branch 2>/dev/null | grep "^*" | sed "s/* / /")\\n\\[\\e[${theme.frameCode}m\\]\\$\\[\\e[0m\\] '`,
+            time: (theme) => `PS1='\\[\\e[${theme.frameCode}m\\][\\t] \\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode}m\\]\\w\\n\\[\\e[${theme.frameCode}m\\]\\$\\[\\e[0m\\] '`,
+            emoji: (theme) => `PS1='\\[\\e[${theme.userCode}m\\]🚀 \\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode}m\\]📁 \\w\\n\\[\\e[${theme.exitCode}m\\]✨\\[\\e[0m\\] '`,
+            blocks: (theme) => `PS1='\\[\\e[${theme.userCode}m\\]█ \\[\\e[${theme.userCode};1m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode}m\\]█ \\w\\n\\[\\e[${theme.frameCode}m\\]▓▒░\\[\\e[0m\\] '`,
+            lambda: (theme) => `PS1='\\[\\e[${theme.frameCode}m\\]╭─\\[\\e[${theme.userCode}m\\]\\u\\[\\e[${theme.frameCode}m\\]@\\[\\e[${theme.userCode}m\\]\\h \\[\\e[${theme.pathCode}m\\]\\w\\n\\[\\e[${theme.frameCode}m\\]╰─\\[\\e[${theme.exitCode};1m\\]λ\\[\\e[0m\\] '`
+        };
+
+        const themeCodes = {
+            green: { frameCode: '32', userCode: '94', pathCode: '38;5;46', exitCode: '32', userColor: '27', pathColor: '46' },
+            purple: { frameCode: '35', userCode: '95', pathCode: '38;5;213', exitCode: '35', userColor: '93', pathColor: '213' },
+            cyan: { frameCode: '36', userCode: '96', pathCode: '38;5;51', exitCode: '36', userColor: '51', pathColor: '51' },
+            orange: { frameCode: '33', userCode: '93', pathCode: '38;5;226', exitCode: '33', userColor: '214', pathColor: '226' },
+            red: { frameCode: '31', userCode: '91', pathCode: '38;5;196', exitCode: '31', userColor: '196', pathColor: '196' },
+            mixed1: { frameCode: '34', userCode: '96', pathCode: '38;5;46', exitCode: '34', userColor: '51', pathColor: '46' },
+            mixed2: { frameCode: '35', userCode: '93', pathCode: '38;5;51', exitCode: '35', userColor: '214', pathColor: '51' },
+            gray: { frameCode: '37', userCode: '97', pathCode: '38;5;255', exitCode: '37', userColor: '255', pathColor: '255' },
+            solarized: { frameCode: '38;5;245', userCode: '38;5;33', pathCode: '38;5;64', exitCode: '38;5;136', userColor: '33', pathColor: '64' },
+            dracula: { frameCode: '38;5;141', userCode: '38;5;212', pathCode: '38;5;84', exitCode: '38;5;215', userColor: '212', pathColor: '84' },
+            nord: { frameCode: '38;5;117', userCode: '38;5;109', pathCode: '38;5;143', exitCode: '38;5;222', userColor: '109', pathColor: '143' },
+            gruvbox: { frameCode: '38;5;208', userCode: '38;5;214', pathCode: '38;5;142', exitCode: '38;5;167', userColor: '214', pathColor: '142' },
+            monokai: { frameCode: '38;5;197', userCode: '38;5;148', pathCode: '38;5;81', exitCode: '38;5;208', userColor: '148', pathColor: '81' },
+            material: { frameCode: '38;5;117', userCode: '38;5;111', pathCode: '38;5;150', exitCode: '38;5;221', userColor: '111', pathColor: '150' },
+            onedark: { frameCode: '38;5;75', userCode: '38;5;176', pathCode: '38;5;114', exitCode: '38;5;180', userColor: '176', pathColor: '114' },
+            gradient1: { frameCode: '38;5;44', userCode: '38;5;39', pathCode: '38;5;43', exitCode: '38;5;44', userColor: '39', pathColor: '43' },
+            gradient2: { frameCode: '38;5;198', userCode: '38;5;171', pathCode: '38;5;213', exitCode: '38;5;198', userColor: '171', pathColor: '213' },
+            neon: { frameCode: '38;5;46', userCode: '38;5;201', pathCode: '38;5;51', exitCode: '38;5;226', userColor: '201', pathColor: '51' }
+        };
+
+        function updatePreview() {
+            const format = document.getElementById('format').value;
+            const themeName = document.getElementById('theme').value;
+            const username = document.getElementById('username').value || 'user';
+            const hostname = document.getElementById('hostname').value || 'localhost';
+            const path = document.getElementById('path').value || '~';
+
+            const theme = themes[themeName];
+            const formatFunc = formats[format];
+
+            const preview = formatFunc(username, hostname, path, theme);
+            document.getElementById('preview').innerHTML = preview;
+
+            const themeCode = themeCodes[themeName];
+            const ps1Template = ps1Templates[format];
+            const ps1Code = ps1Template(themeCode);
+            document.getElementById('ps1-code').textContent = ps1Code;
+        }
+
+        function copyPS1() {
+            const ps1Code = document.getElementById('ps1-code').textContent;
+            navigator.clipboard.writeText(ps1Code).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        function createThemeCards() {
+            const grid = document.getElementById('theme-grid');
+            const themeNames = {
+                green: 'Original Green/Blue',
+                purple: 'Cyberpunk Purple',
+                cyan: 'Ocean Cyan',
+                orange: 'Warm Orange',
+                red: 'Red Alert',
+                mixed1: 'Blue/Green Mix',
+                mixed2: 'Purple/Cyan Mix',
+                gray: 'Monochrome Gray',
+                solarized: 'Solarized Dark',
+                dracula: 'Dracula',
+                nord: 'Nord',
+                gruvbox: 'Gruvbox',
+                monokai: 'Monokai',
+                material: 'Material',
+                onedark: 'One Dark',
+                gradient1: 'Gradient (Teal→Blue)',
+                gradient2: 'Gradient (Pink→Purple)',
+                neon: 'Neon'
+            };
+
+            Object.keys(themes).forEach(themeName => {
+                const card = document.createElement('div');
+                card.className = 'theme-card';
+                card.onclick = () => {
+                    document.getElementById('theme').value = themeName;
+                    updatePreview();
+                };
+
+                const theme = themes[themeName];
+                const preview = formats.boxed('user', 'host', '~/project', theme);
+
+                card.innerHTML = `
+                    <h4>${themeNames[themeName]}</h4>
+                    <div class="theme-preview">${preview}</div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('format').addEventListener('change', updatePreview);
+        document.getElementById('theme').addEventListener('change', updatePreview);
+        document.getElementById('username').addEventListener('input', updatePreview);
+        document.getElementById('hostname').addEventListener('input', updatePreview);
+        document.getElementById('path').addEventListener('input', updatePreview);
+
+        createThemeCards();
+        updatePreview();
+    </script>
+</body>
+</html>
